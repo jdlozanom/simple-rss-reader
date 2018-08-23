@@ -31,6 +31,10 @@ public class NewsRepository {
         newsList = newsDao.getAllNews();
     }
 
+    public LiveData<NewsItem> getNewsItemById(String newsItemId){
+        return newsDao.getNewsItemById(newsItemId);
+    }
+
     //Access to rrs endpoint to get News and save them in database
     public LiveData<List<NewsItem>> getNewsList() {
         Retrofit retrofit = new Retrofit.Builder()

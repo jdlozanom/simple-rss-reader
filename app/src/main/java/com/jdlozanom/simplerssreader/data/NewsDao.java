@@ -16,4 +16,7 @@ public interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNewsItem(NewsItem newsItem);
+
+    @Query("SELECT * FROM newsItem WHERE id = :id")
+    LiveData<NewsItem> getNewsItemById(String id);
 }

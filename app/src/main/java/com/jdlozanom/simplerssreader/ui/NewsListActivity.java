@@ -2,6 +2,7 @@ package com.jdlozanom.simplerssreader.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListAdapt
 
     @Override
     public void onListItemClick(String newsItemId) {
-        //TODO
+        Intent intent = new Intent(NewsListActivity.this, NewsDetailActivity.class);
+        intent.putExtra(NewsDetailActivity.EXTRA_NEWS_ID, newsItemId);
+        startActivity(intent);
     }
 }
