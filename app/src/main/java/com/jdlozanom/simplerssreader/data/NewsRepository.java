@@ -31,8 +31,13 @@ public class NewsRepository {
         newsList = newsDao.getAllNews();
     }
 
-    public LiveData<NewsItem> getNewsItemById(String newsItemId){
+    public LiveData<NewsItem> getNewsItemById(String newsItemId) {
         return newsDao.getNewsItemById(newsItemId);
+    }
+
+    public LiveData<List<NewsItem>> getFilteredNewsList(String filterText) {
+        if (filterText.isEmpty()) return newsDao.getAllNews();
+        else return newsDao.getFilteredNews("%" + filterText + "%");
     }
 
     //Access to rrs endpoint to get News and save them in database
@@ -70,7 +75,7 @@ public class NewsRepository {
     private void insertFeed(Feed feed) {
         List<ItemFeed> itemFeeds = feed.getChannelFeed().getItems();
         for (ItemFeed item : itemFeeds) {
-            NewsItem newsItem = new NewsItem(item.getId(), item.getTitle(),  HtmlUtils.getFirstImage(item.getDescription()), item.getDescription(), item.getLink());
+            NewsItem newsItem = new NewsItem(item.getId(), item.getTitle(), HtmlUtils.getFirstImage(item.getDescription()), item.getDescription(), item.getLink());
             insertNewsItem(newsItem);
         }
     }

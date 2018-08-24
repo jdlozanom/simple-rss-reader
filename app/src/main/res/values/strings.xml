@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Simple RSS Reader</string>
     <string name="link_button_text">Ir a noticia</string>
+    <string name="search">Buscar</string>
 </resources>

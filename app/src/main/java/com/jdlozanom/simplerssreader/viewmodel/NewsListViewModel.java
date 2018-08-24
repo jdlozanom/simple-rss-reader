@@ -12,10 +12,11 @@ import java.util.List;
 
 public class NewsListViewModel extends AndroidViewModel {
     private LiveData<List<NewsItem>> newsList;
+    private NewsRepository newsRepository;
 
     public NewsListViewModel(@NonNull Application application) {
         super(application);
-        NewsRepository newsRepository = new NewsRepository(application);
+        newsRepository = new NewsRepository(application);
         newsList = newsRepository.getNewsList();
     }
 
@@ -23,4 +24,7 @@ public class NewsListViewModel extends AndroidViewModel {
         return newsList;
     }
 
+    public LiveData<List<NewsItem>> getFilteredNewsList(String filterText) {
+        return newsRepository.getFilteredNewsList(filterText);
+    }
 }

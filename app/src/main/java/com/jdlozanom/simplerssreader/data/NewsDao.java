@@ -19,4 +19,7 @@ public interface NewsDao {
 
     @Query("SELECT * FROM newsItem WHERE id = :id")
     LiveData<NewsItem> getNewsItemById(String id);
+
+    @Query("SELECT * FROM newsitem WHERE title LIKE :filterText")
+    LiveData<List<NewsItem>> getFilteredNews(String filterText);
 }
